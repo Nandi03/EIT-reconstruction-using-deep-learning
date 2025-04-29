@@ -13,7 +13,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
     Args:
         index_to_coordinate (dict): A dictionary with indices as keys and 3D coordinates (x, y, z) as values.
         sample_array (list or np.ndarray): Values corresponding to the conductivity at each point.
-        colormap (str): Colormap to use for visualization.
+        colormap (str): Colormap to use for visualisation.
     """
     # Extract points and corresponding values from the dictionary
     indices = sorted(index_to_coordinate.keys())  # Ensure consistent ordering of indices
@@ -37,7 +37,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 
     # Create a colormap instance
     cmap = plt.cm.get_cmap(colormap)
-    norm = plt.Normalize(values.min(), values.max())  # Normalize values for color mapping
+    norm = plt.Normalize(values.min(), values.max())  # Normalise values for color mapping
 
     # Create a 3D figure
     fig = plt.figure(figsize=(10, 8))
@@ -73,14 +73,14 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 def create_triangular_mesh(sample_array, width, height, index_to_coordinate, colormap='plasma'):
     """
     Create a triangular mesh and interpolate the conductivity distribution
-    between points to visualize it as a heatmap.
+    between points to visualise it as a heatmap.
     
     Args:
         array (list or numpy array): Values corresponding to the conductivity at each point.
         index_to_coord (dict): A dictionary mapping indices to coordinates (x, y).
         width (int): Width of the output image.
         height (int): Height of the output image.
-        colormap (str): Colormap to use for visualization.
+        colormap (str): Colormap to use for visualisation.
     """
     # Extract coordinates and values
     points = np.array(list(index_to_coordinate.values()))  # Coordinates (x, y) of the points
