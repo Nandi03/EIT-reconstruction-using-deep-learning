@@ -1,0 +1,90 @@
+## 8 electrodes
+
+mode: "classification" #with_random_force_predictions, force_predictions
+num_runs: 10
+scaler: "standard" # standard, minmax, etc..
+
+configurations:
+    - num_electrode_pairs: 40
+      skin_type: "2d"
+      dir: "8 electrodes, 0.5 grid size"
+      multi_touch_file: "multi_touch_simulation_8.csv"
+      single_touch_file: "touch_simulation_results_8.csv"
+      pickle_fname: "2d_8_elec_5_grid_size"
+    - num_electrode_pairs: 40
+      skin_type: "2d"
+      dir: "8 electrodes, 6 points"
+      multi_touch_file: "multi_touch_simulation_8_6p.csv"
+      single_touch_file: "touch_simulation_results_8_6p.csv"
+      pickle_fname: "2d_8_elec_6_points"
+    - num_electrode_pairs: 208
+      skin_type: "2d"
+      dir: "16 electrodes, 0.4 grid size"
+      multi_touch_file: "multi_touch_simulation_16.csv"
+      single_touch_file: "touch_simulation_results_16.csv"
+      pickle_fname: "2d_16_elec_4_grid_size"
+    - num_electrode_pairs: 504
+      dir: "24 electrodes, 0.1 grid size"
+      skin_type: "2d"
+      multi_touch_file: "multi_touch_simulation_24_1.csv"
+      single_touch_file: "touch_simulation_results_24_1.csv"
+      pickle_fname: "2d_24_elec_1_grid_size"
+    - num_electrode_pairs: 504
+      dir: "24 electrodes, 0.4 grid size"
+      skin_type: "2d"
+      multi_touch_file: "multi_touch_simulation_24_4_4.csv"
+      single_touch_file: "touch_simulation_results_24_4.csv"
+      pickle_fname: "2d_24_elec_4_grid_size"
+    - num_electrode_pairs: 504
+      dir: "24 electrodes, grid size 0.2"
+      skin_type: "2d"
+      multi_touch_file: "multi_touch_simulation_24_2.csv"
+      single_touch_file: "touch_simulation_results_24_2.csv"
+      pickle_fname: "2d_24_elec_2_grid_size"
+    - num_electrode_pairs: 504
+      skin_type: "2d"
+      dir: "24 electrodes, grid size 0.3"
+      multi_touch_file: "multi_touch_simulation_24_3.csv"
+      single_touch_file: "touch_simulation_results_24.csv"
+      pickle_fname: "2d_24_elec_3_grid_size"
+    - num_electrode_pairs: 208
+      skin_type: "2d"
+      dir: "16 electrodes, 0.4 grid size"
+      multi_touch_file: "circ_random_forces_16_4.csv"
+      single_touch_file: "touch_simulation_results_16.csv"
+      pickle_fname: "2d_16_elec_4_grid_size"
+    - num_electrode_pairs: 504
+      dir: "24 electrodes, 0.4 grid size"
+      skin_type: "2d"
+      multi_touch_file: "circ_random_forces_24_4.csv"
+      single_touch_file: "touch_simulation_results_24_4.csv"
+      pickle_fname: "2d_24_elec_4_grid_size"
+    - num_electrode_pairs: 504
+      skin_type: "2d"
+      dir: "24 electrodes, grid size 0.3"
+      multi_touch_file: "circ_random_forces_24_3.csv"
+      single_touch_file: "touch_simulation_results_24.csv"
+      pickle_fname: "2d_24_elec_3_grid_size"
+
+    # - num_electrode_pairs: 64
+    #   skin_type: "3d"
+    #   dir: "8 electrodes, 0.4 grid size, 0.2 z-value"
+    #   multi_touch_file: "cylinder_multi_touch_8_4.csv"
+    #   single_touch_file: "cylinder_sim_single_2.csv"
+    #   pickle_fname: "3d_8_elec_4_grid_size"
+    # - num_electrode_pairs: 256
+    #   skin_type: "3d"
+    #   dir: "16 electrodes, 0.4 grid size, 0.2 z-values"
+    #   multi_touch_file: "cylinder_multi_touch_16_4.csv"
+    #   single_touch_file: "cylinder_sim_single_16.csv"
+    #   pickle_fname: "3d_16_elec_4_grid_size"
+    # - num_electrode_pairs: 256
+    #   skin_type: "3d"
+    #   dir: "16 electrodes, 0.2 grid size, 0.1 z-value"
+    #   multi_touch_file: "cylinder_multi_touch_16_2.csv"
+    #   single_touch_file: "cylinder_sim_single_16_2.csv"
+    #   pickle_fname: "3d_16_elec_2_grid_size"
+
+
+
+
