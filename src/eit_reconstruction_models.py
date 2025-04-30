@@ -22,9 +22,9 @@ class EITReconstructionModel:
         of boundary voltages for EIT reconstruction. 
 
         The model architecture includes:
-            - Input layer with batch normalization and dropout.
-            - Three hidden dense layers with ELU activation, batch normalization, 
-            L2 regularization, and dropout.
+            - Input layer with batch normalisation and dropout.
+            - Three hidden dense layers with ELU activation, batch normalisation, 
+            L2 regularisation, and dropout.
             - Output layer with sigmoid activation for multi-label outputs.
 
         Compilation details:
@@ -82,7 +82,7 @@ class EITReconstructionModel:
             - Input reshaped to (pairs_electrodes, 1) to support Conv1D layers.
             - Four 1D convolutional layers with ReLU activations, each followed by max pooling.
             - Flattening layer to transition to dense layers.
-            - Three fully connected dense layers with ReLU activations and a dropout layer for regularization.
+            - Three fully connected dense layers with ReLU activations and a dropout layer for regularisation.
             - Output dense layer with sigmoid activation for multi-label output.
 
         Compilation details:
@@ -152,7 +152,7 @@ class EITReconstructionModel:
             - Input reshaped to (pairs_electrodes, 1) for Conv1D processing.
             - Four 1D convolutional layers with ReLU activation, each followed by max pooling.
             - Flattening layer to transition to fully connected dense layers.
-            - Three fully connected dense layers with ReLU activations and a dropout layer for regularization.
+            - Three fully connected dense layers with ReLU activations and a dropout layer for regularisation.
             - Output dense layer with sigmoid activation to predict continuous values.
 
         Compilation details:
@@ -200,7 +200,7 @@ class EITReconstructionModel:
         # Output layer with sigmoid activation for continuous outputs
         self.model.add(Dense(self.num_classes, activation='sigmoid'))
 
-        # Compile model with Mean Squared Error loss for regression and Adam optimizer
+        # Compile model with Mean Squared Error loss for regression and Adam optimiser
         self.model.compile(
             optimizer=Adam(1e-5),
             loss='mse',
@@ -219,12 +219,12 @@ class EITReconstructionModel:
 
         The model architecture includes:
             - Dense input layer matching the number of electrode pairs.
-            - Multiple fully connected layers with ELU activation, L2 regularization, batch normalization, 
-            and dropout for improved generalization.
+            - Multiple fully connected layers with ELU activation, L2 regularisation, batch normalisation, 
+            and dropout for improved generalisation.
             - Output dense layer with sigmoid activation to predict continuous values.
 
         Compilation details:
-            - Optimizer: Adam with a learning rate of 1e-5.
+            - Optimiser: Adam with a learning rate of 1e-5.
             - Loss: Mean Squared Error (MSE), suitable for regression problems.
             - Metrics: Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
 

@@ -1,3 +1,9 @@
+"""
+This scripts prints the metrics stored in a pickle file,
+in a neat formatted way. Run this script after training,
+to ensure pickle file is created.
+"""
+
 import pickle
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,7 +17,7 @@ def create_cylindrical_f1_heatmap(classification_report_str, index_to_coordinate
     - F1-scores from classification report
     - Proper linear interpolation in 3D space
     """
-    # 1. Parse F1-scores
+    # Parse F1-scores
     f1_scores = {}
     for line in classification_report_str.split('\n'):
         if not line.strip() or 'avg' in line:
@@ -20,31 +26,31 @@ def create_cylindrical_f1_heatmap(classification_report_str, index_to_coordinate
         if parts[0].isdigit():
             f1_scores[int(parts[0])] = float(parts[3])
 
-    # 2. Prepare data
+    # Prepare data
     points = np.array([coord for idx, coord in index_to_coordinate.items() if idx in f1_scores])
     values = np.array([f1_scores[idx] for idx in index_to_coordinate if idx in f1_scores])
 
-    # 3. Create grid for interpolation
+    # Create grid for interpolation
     grid_x, grid_y, grid_z = np.mgrid[
         min(points[:,0]):max(points[:,0]):20j,
         min(points[:,1]):max(points[:,1]):20j,
         min(points[:,2]):max(points[:,2]):20j
     ]
 
-    # 4. Interpolate values
+    # Interpolate values
     grid_values = griddata(
         points, values,
         (grid_x, grid_y, grid_z),
         method='linear'
     )
 
-    # 5. Create plot
+    # Create plot
     fig = plt.figure(figsize=(12, 9))
     ax = fig.add_subplot(111, projection='3d')
     
-    # Plot interpolated values (as semi-transparent volume)
+    # Plot interpolated values
     ax.voxels(
-        ~np.isnan(grid_values),  # Mask for valid values
+        ~np.isnan(grid_values),  
         facecolors=plt.cm.viridis(Normalize(vmin=0, vmax=1)(grid_values)),
         edgecolor='none', alpha=0.3
     )
@@ -56,7 +62,7 @@ def create_cylindrical_f1_heatmap(classification_report_str, index_to_coordinate
         s=100, alpha=1, vmin=0, vmax=1
     )
 
-    # Colorbar
+    # Plot Colorbar
     cbar = fig.colorbar(sc, ax=ax)
     cbar.set_label('F1-Score')
 
@@ -104,7 +110,6 @@ def create_circular_f1_heatmap(classification_report_str, index_to_coordinate, n
 
     # Interpolate using nearest-neighbor for missing values
     grid_z = griddata(points, values, (X, Y), method='cubic')
-    # Fill remaining NaN values with nearest-neighbor interpolation
     if np.isnan(grid_z).any():
         grid_z_nn = griddata(points, values, (X, Y), method='nearest')
         grid_z = np.where(np.isnan(grid_z), grid_z_nn, grid_z)
@@ -114,7 +119,7 @@ def create_circular_f1_heatmap(classification_report_str, index_to_coordinate, n
     norm = Normalize(vmin=0, vmax=1)
     im = ax.pcolormesh(T, R, grid_z, norm=norm, cmap='viridis', shading='auto')
 
-    # Colorbar
+    # Plot Colorbar
     cbar = fig.colorbar(im, ax=ax, pad=0.05, shrink=0.8)
     cbar.set_label('F1-Score', rotation=270, labelpad=25, fontsize=15)
     cbar.ax.tick_params(labelsize=12)
@@ -194,5 +199,5 @@ if __name__ == "__main__":
     index_to_coordinate = None
     with open("2d_8_elec_5_grid_size_index_to_coordinate.pkl", "rb") as f:
         index_to_coordinate = pickle.load(f)
-
+    
     print_metrics(metrics_file, index_to_coordinate, 16, "2d_8_elec_5_grid_size_cnn_f1_scores.png", 26)

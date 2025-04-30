@@ -7,13 +7,13 @@ def hamming_loss(y_true, y_pred, threshold=0.5):
     Args:
         y_true (tf.Tensor): Ground truth binary labels (batch_size, num_labels).
         y_pred (tf.Tensor): Predicted probabilities or binary values.
-        threshold (float): Threshold to binarize predictions.
+        threshold (float): Threshold to binarise predictions.
 
     Returns:
         tf.Tensor: Scalar Hamming loss.
     """
 
-    # Binarize predictions using the threshold
+    # Binarise predictions using the threshold
     y_pred_binary = tf.cast(y_pred >= threshold, tf.float32)
     y_true = tf.cast(y_true, tf.float32)
 
@@ -35,13 +35,13 @@ def example_based_f1(y_true, y_pred, threshold=0.5):
     Args:
         y_true (tf.Tensor): Ground truth binary labels, shape (batch_size, num_labels).
         y_pred (tf.Tensor): Predicted probabilities or binary labels, shape (batch_size, num_labels).
-        threshold (float): Threshold to binarize predictions.
+        threshold (float): Threshold to binarise predictions.
 
     Returns:
         tf.Tensor: Mean example-based F1 score.
     """
 
-    # Binarize predictions
+    # Binarise predictions
     y_pred_binary = tf.cast(y_pred >= threshold, tf.float32)
     y_true = tf.cast(y_true, tf.float32)
 

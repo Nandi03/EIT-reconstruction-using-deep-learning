@@ -1,9 +1,10 @@
-## 8 electrodes
 
 mode: "classification" #with_random_force_predictions, force_predictions
 num_runs: 10
 scaler: "standard" # standard, minmax, etc..
 
+# Download the data from the following link -
+# All data can be accessed online via this link: https://liveuclac-my.sharepoint.com/:f:/g/personal/zcabndc_ucl_ac_uk/EnQzBS52gPpHozL1M2NmeAUBHbr1FOeGCwIrm9vk80lXTA?e=mQQUcz
 configurations:
     - num_electrode_pairs: 40
       skin_type: "2d"
@@ -66,24 +67,24 @@ configurations:
       single_touch_file: "touch_simulation_results_24.csv"
       pickle_fname: "2d_24_elec_3_grid_size"
 
-    # - num_electrode_pairs: 64
-    #   skin_type: "3d"
-    #   dir: "8 electrodes, 0.4 grid size, 0.2 z-value"
-    #   multi_touch_file: "cylinder_multi_touch_8_4.csv"
-    #   single_touch_file: "cylinder_sim_single_2.csv"
-    #   pickle_fname: "3d_8_elec_4_grid_size"
-    # - num_electrode_pairs: 256
-    #   skin_type: "3d"
-    #   dir: "16 electrodes, 0.4 grid size, 0.2 z-values"
-    #   multi_touch_file: "cylinder_multi_touch_16_4.csv"
-    #   single_touch_file: "cylinder_sim_single_16.csv"
-    #   pickle_fname: "3d_16_elec_4_grid_size"
-    # - num_electrode_pairs: 256
-    #   skin_type: "3d"
-    #   dir: "16 electrodes, 0.2 grid size, 0.1 z-value"
-    #   multi_touch_file: "cylinder_multi_touch_16_2.csv"
-    #   single_touch_file: "cylinder_sim_single_16_2.csv"
-    #   pickle_fname: "3d_16_elec_2_grid_size"
+    - num_electrode_pairs: 64
+      skin_type: "3d"
+      dir: "8 electrodes, 0.4 grid size, 0.2 z-value"
+      multi_touch_file: "cylinder_multi_touch_8_4.csv"
+      single_touch_file: "cylinder_sim_single_2.csv"
+      pickle_fname: "3d_8_elec_4_grid_size"
+    - num_electrode_pairs: 256
+      skin_type: "3d"
+      dir: "16 electrodes, 0.4 grid size, 0.2 z-values"
+      multi_touch_file: "cylinder_multi_touch_16_4.csv"
+      single_touch_file: "cylinder_sim_single_16.csv"
+      pickle_fname: "3d_16_elec_4_grid_size"
+    - num_electrode_pairs: 256
+      skin_type: "3d"
+      dir: "16 electrodes, 0.2 grid size, 0.1 z-value"
+      multi_touch_file: "cylinder_multi_touch_16_2.csv"
+      single_touch_file: "cylinder_sim_single_16_2.csv"
+      pickle_fname: "3d_16_elec_2_grid_size"
 
 
 

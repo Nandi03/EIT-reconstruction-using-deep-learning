@@ -1,3 +1,12 @@
+"""
+This script trains the EIT reconstruction model using the best
+model found over multiple runs, using various configurations 
+specified in the configuration.yaml file. 
+It stores all the metrics of training, and test performance 
+in a pickle file. 
+
+"""
+
 from eit_reconstruction_models import EITReconstructionModel as EITModel
 import os
 import yaml
@@ -8,6 +17,7 @@ import pickle
 import time
 from load_eit_data_from_csv import DataLoader
 from classification_report_metrics import *
+
 
 def add_gaussian_noise(X, mean=0.0, std=0.01):
     noise = np.random.normal(loc=mean, scale=std, size=X.shape)

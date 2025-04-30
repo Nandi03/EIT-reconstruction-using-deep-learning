@@ -17,18 +17,18 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
     """
     # Extract points and corresponding values from the dictionary
     indices = sorted(index_to_coordinate.keys())  # Ensure consistent ordering of indices
-    points = np.array([index_to_coordinate[i] for i in indices])  # 3D coordinates (x, y, z)
+    points = np.array([index_to_coordinate[i] for i in indices])  
     values = np.array([sample_array[i] for i in indices])  # Corresponding predicted values
 
     # Convert points to cylindrical coordinates (theta, z)
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
-    theta = np.arctan2(y, x)  # Angular coordinate
+    theta = np.arctan2(y, x)  
 
-    # Wrap points at -π and +π to close the cylinder
-    extended_points = np.vstack([points, points])  # Duplicate the points
-    extended_theta = np.concatenate([theta, theta + 2 * np.pi])  # Wrap around theta
+    # Wrap points at pi and -pi to close the cylinder
+    extended_points = np.vstack([points, points]) 
+    extended_theta = np.concatenate([theta, theta + 2 * np.pi])  
     extended_z = np.concatenate([z, z])  # Duplicate z
-    extended_values = np.concatenate([values, values])  # Duplicate values
+    extended_values = np.concatenate([values, values])  
 
     cylindrical_coords = np.column_stack((extended_theta, extended_z))  # 2D unwrapped coordinates
 
@@ -37,7 +37,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 
     # Create a colormap instance
     cmap = plt.cm.get_cmap(colormap)
-    norm = plt.Normalize(values.min(), values.max())  # Normalise values for color mapping
+    norm = plt.Normalize(values.min(), values.max()) # normalise
 
     # Create a 3D figure
     fig = plt.figure(figsize=(10, 8))
@@ -45,9 +45,10 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 
     # Plot the triangles with smooth interpolation
     for simplex in tri.simplices:
-        triangle = extended_points[simplex]  # Vertices of the triangle
+        triangle = extended_points[simplex]  
+
         # Interpolate the colors based on the conductivity values at the vertices
-        verts = [list(zip(triangle[:, 0], triangle[:, 1], triangle[:, 2]))]  # 3D triangle vertices
+        verts = [list(zip(triangle[:, 0], triangle[:, 1], triangle[:, 2]))]  
         face_color = cmap(norm(extended_values[simplex].mean()))
         poly = Poly3DCollection(verts, facecolor=face_color, edgecolor='k', alpha=0.8)
         ax.add_collection3d(poly)
@@ -56,7 +57,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
     sc = ax.scatter(points[:, 0], points[:, 1], points[:, 2], c=values, cmap=colormap, edgecolor='k', s=50)
     fig.colorbar(sc, ax=ax, label='Conductivity')
 
-    # Set plot details
+    # Label Axes
     ax.set_title('Triangular Mesh on Cylinder Surface with Interpolated Colors')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
@@ -83,8 +84,8 @@ def create_triangular_mesh(sample_array, width, height, index_to_coordinate, col
         colormap (str): Colormap to use for visualisation.
     """
     # Extract coordinates and values
-    points = np.array(list(index_to_coordinate.values()))  # Coordinates (x, y) of the points
-    values = np.array(sample_array)  # Conductivity values at each point
+    points = np.array(list(index_to_coordinate.values()))  
+    values = np.array(sample_array)  
 
     # Perform Delaunay triangulation
     tri = Delaunay(points)
@@ -102,8 +103,10 @@ def create_triangular_mesh(sample_array, width, height, index_to_coordinate, col
     plt.tricontourf(points[:, 0], points[:, 1], tri.simplices, values, cmap=colormap, alpha=0.7)
     plt.imshow(grid_z, extent=(x.min(), x.max(), y.min(), y.max()), origin='lower', cmap=colormap, alpha=0.9)
     plt.colorbar(label='Conductivity')
-    plt.scatter(points[:, 0], points[:, 1], c='red', edgecolor='black', label='Sampling Points')  # Original points
+    plt.scatter(points[:, 0], points[:, 1], c='red', edgecolor='black', label='Sampling Points')  
     plt.legend()
+
+    # label axes and plot
     plt.title('Triangular Mesh with Interpolated Conductivity')
     plt.xlabel('X')
     plt.ylabel('Y')
