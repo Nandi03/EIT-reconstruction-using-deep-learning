@@ -1,3 +1,11 @@
+"""
+This script contains functions for creating, compiling, training, 
+evaluating, saving or loading the EIT reconstruction models used
+in conducting the research. 
+The 1D-CNN network builds upon previous research: 
+DOI: 10.1063/5.0025881 or URL: https://pubmed.ncbi.nlm.nih.gov/33380008/
+"""
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import (
     Dense, Dropout, Input, BatchNormalization,  
