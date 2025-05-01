@@ -69,5 +69,7 @@ Source code for these models are found in the folder, src/eit_reconstruction_mod
   <img src="images/3d_342_predicted.png" width="45%" style="margin: 5px;"/>
   <img src="images/3d_342_ground_truth.png" width="45%" style="margin: 5px;"/>
 </p>
+
 ## Future Work
+
 Consider using an ensemble method of the 1D-CNN and DNN to improve quality of reconstructed images, and accuracy and precision of force predictions.
