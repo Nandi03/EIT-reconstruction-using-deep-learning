@@ -1,3 +1,24 @@
+"""
+This script contains functions for performing Denlaunay triangulation
+to reconstruct an image of conductivity distribution of a 
+2D circular skin and a 3D cylindrical skin.
+We use linear interpolation in between points.
+
+References:
+
+Delaunay triangulation tutorials:
+https://www.geeksforgeeks.org/triangulations-using-matplotlib/
+https://docs.scipy.org/doc/scipy/tutorial/spatial.html
+
+Grid interpolation tutorials:
+https://docs.scipy.org/doc/scipy/tutorial/interpolate.html
+https://scipython.com/book/chapter-8-scipy/examples/two-dimensional-interpolation-with-scipyinterpolategriddata/
+
+3D plotting tutorials:
+https://matplotlib.org/stable/api/_as_gen/mpl_toolkits.mplot3d.art3d.Poly3DCollection.html
+
+"""
+
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from scipy.spatial import Delaunay
 import matplotlib.pyplot as plt
@@ -49,7 +70,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 
         # Interpolate the colors based on the conductivity values at the vertices
         verts = [list(zip(triangle[:, 0], triangle[:, 1], triangle[:, 2]))]  
-        face_color = cmap(norm(extended_values[simplex].mean()))
+        face_color = cmap(norm(extended_values[simplex].mean())) # average the values
         poly = Poly3DCollection(verts, facecolor=face_color, edgecolor='k', alpha=0.8)
         ax.add_collection3d(poly)
 
