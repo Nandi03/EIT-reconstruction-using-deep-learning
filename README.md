@@ -18,6 +18,7 @@ Source code for these models are found in the folder, src/eit_reconstruction_mod
 
 ### Multi-label classification results for touch localisation
 
+
 | Skin Geometry              | Sample Points | Best Network | MSE    | MAE    | RMSE   | Training Time (s) |
 |---------------------------|----------------|--------------|--------|--------|--------|--------------------|
 | 2D Skin with 8 Electrodes | 26             | 1D-CNN       | 0.016  | 0.090  | 0.126  | 420                |
@@ -46,6 +47,7 @@ Source code for these models are found in the folder, src/eit_reconstruction_mod
 |                           | 342            | DNN          | 0.005  | 0.060  | 0.072  | 1700               |
 
 ### Image Reconstruction for two-dimensional skin
+
 <p align="center">
   <strong>Predicted</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <strong>Ground Truth</strong>
@@ -57,7 +59,9 @@ Source code for these models are found in the folder, src/eit_reconstruction_mod
   <img src="images/2d_24_64_predicted.png" width="45%" style="margin: 5px;"/>
   <img src="images/2d_24_64_ground_truth.png" width="45%" style="margin: 5px;"/>
 </p>
+
 ### Image Reconstruction for three-dimensional skin
+
 <p align="center">
   <strong>Predicted</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <strong>Ground Truth</strong>
