@@ -32,7 +32,7 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
     with smooth interpolation of the colors across the mesh and complete closure.
     
     Args:
-        index_to_coordinate (dict): A dictionary with indices as keys and 3D coordinates (x, y, z) as values.
+        index_to_coordinate (dict): A dictionary with class indices as keys and 3D coordinates (x, y, z) as values.
         sample_array (list or np.ndarray): Values corresponding to the conductivity at each point.
         colormap (str): Colormap to use for visualisation.
     """
@@ -92,17 +92,16 @@ def create_cylinder_surface_mesh(index_to_coordinate, sample_array, colormap='pl
 
 
 
-def create_triangular_mesh(sample_array, width, height, index_to_coordinate, colormap='plasma'):
+def create_triangular_mesh(sample_array, width, height, index_to_coordinate):
     """
     Create a triangular mesh and interpolate the conductivity distribution
     between points to visualise it as a heatmap.
     
     Args:
         array (list or numpy array): Values corresponding to the conductivity at each point.
-        index_to_coord (dict): A dictionary mapping indices to coordinates (x, y).
+        index_to_coord (dict): A dictionary mapping classes indices to coordinates (x, y).
         width (int): Width of the output image.
         height (int): Height of the output image.
-        colormap (str): Colormap to use for visualisation.
     """
     # Extract coordinates and values
     points = np.array(list(index_to_coordinate.values()))  
@@ -121,8 +120,8 @@ def create_triangular_mesh(sample_array, width, height, index_to_coordinate, col
 
     # Plot the triangulated mesh with the interpolated heatmap
     plt.figure(figsize=(8, 6))
-    plt.tricontourf(points[:, 0], points[:, 1], tri.simplices, values, cmap=colormap, alpha=0.7)
-    plt.imshow(grid_z, extent=(x.min(), x.max(), y.min(), y.max()), origin='lower', cmap=colormap, alpha=0.9)
+    plt.tricontourf(points[:, 0], points[:, 1], tri.simplices, values, cmap='plasma', alpha=0.7)
+    plt.imshow(grid_z, extent=(x.min(), x.max(), y.min(), y.max()), origin='lower', cmap='plasma', alpha=0.9)
     plt.colorbar(label='Conductivity')
     plt.scatter(points[:, 0], points[:, 1], c='red', edgecolor='black', label='Sampling Points')  
     plt.legend()
